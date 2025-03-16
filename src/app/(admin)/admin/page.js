@@ -76,9 +76,9 @@ export default function Page() {
     const onSubmit = async (values) => {
         if (!selectedValue) return;
         try {
-            await fetch(`/api/post/${selectedValue}/`, {
+            await fetch(`/api/post/`, {
                 method: "POST",
-                body: JSON.stringify(values)
+                body: JSON.stringify({...values, type: selectedValue})
             })
             form.reset();
             fetchPosts();
