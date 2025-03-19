@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 
 export default function Post({ title, date, content, link, srcImg, notIncludeImage }) {
-    const formattedDate = new Date(date).toLocaleString("en-GB");
+    const formattedDate = new Date(date).toLocaleString("en-GB", { timeZone: "Asia/Bangkok" });
     return (
         <Card className={cn("m-4 p-0 w-xs max-w-screen max-h-[800]px", srcImg ? "pb-3" : "py-3")}>
             {(!notIncludeImage && srcImg) && <AspectRatio ratio={16 / 9} className="m-1">
