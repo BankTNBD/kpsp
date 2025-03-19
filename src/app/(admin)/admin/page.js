@@ -49,6 +49,7 @@ export default function Page() {
 
     const handleSelectChange = (value) => {
         setSelectedValue(value);
+        localStorage.setItem("selectedValue", value);
     };
 
     const fetchPosts = async () => {
@@ -75,6 +76,12 @@ export default function Page() {
 
     const onSubmit = async (values) => {
         if (!selectedValue) return;
+        let emptyVal = true;
+        for (let key in values) {
+            if(values[key])
+                emptyVal = false;
+        }
+        if (emptyVal) return;
         try {
             await fetch(`/api/post/`, {
                 method: "POST",
@@ -103,6 +110,10 @@ export default function Page() {
         fetchPosts()
         form.reset()
     }, [selectedValue]);
+
+    React.useEffect(() => {
+        setSelectedValue(localStorage.getItem("selectedValue") || "");
+    }, []);
 
     return (
         <ResizablePanelGroup

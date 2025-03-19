@@ -28,12 +28,12 @@ export default function Post({ title, date, content, link, srcImg, notIncludeIma
                     <p>{content}</p>
                 </CardContent>
             }
-            {link &&
-                <CardFooter className={cn(children ? "flex justify-between" : "")}>
+            <CardFooter className={cn("flex", link ? "justify-between" : "justify-end")}>
+                {link &&
                     <Link href={link} className="hover:underline text-blue-950 font-bold text-sm">อ่านเพิ่มเติม</Link>
-                    {children}
-                </CardFooter>
-            }
+                }
+                {children}
+            </CardFooter>
         </Card>
     );
 }
