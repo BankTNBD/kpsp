@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 
 
 export default function Post({ title, date, content, link, srcImg, notIncludeImage, children }) {
+    const formattedDate = new Date(date).toLocaleString("en-GB");
     return (
         <Card className={cn("m-4 p-0 w-xs max-w-screen max-h-[800]px", srcImg ? "pb-3" : "py-3")}>
             {(!notIncludeImage && srcImg) && <AspectRatio ratio={16 / 9} className="m-1">
@@ -20,7 +21,7 @@ export default function Post({ title, date, content, link, srcImg, notIncludeIma
             </AspectRatio>}
             <CardHeader>
                 {title && <CardTitle className="text-wrap text-lg">{title}</CardTitle>}
-                {date && <CardDescription >{date}</CardDescription>}
+                {date && <CardDescription >{formattedDate}</CardDescription>}
             </CardHeader>
             {content &&
                 <CardContent className="text-wrap">
